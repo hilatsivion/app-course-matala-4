@@ -1,34 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { View, FlatList, StyleSheet, Text } from "react-native";
 import AvailableItem from "../components/AvailableItem";
 import UnavailableItem from "../components/UnavailableItem";
 import Navbar from "../components/Navbar";
 import { useNavigation } from "@react-navigation/native";
+import { ItemsContext } from "../App"; // Import the context
 
 export default function ListScreen() {
   const navigation = useNavigation();
-
-  // Updated items array with `details` property
-  const [items, setItems] = useState([
-    {
-      id: "1",
-      name: "Item #1111",
-      completed: false,
-      details: "Details about Item #1111 hi.",
-    },
-    {
-      id: "2",
-      name: "Item #2222",
-      completed: false,
-      details: "Details about Item #2222.",
-    },
-    {
-      id: "3",
-      name: "Item #3333",
-      completed: true,
-      details: "Details about Item #3333.",
-    },
-  ]);
+  const { items, setItems } = useContext(ItemsContext); // Access items and setItems from context
 
   const toggleItemStatus = (id) => {
     setItems((prevItems) =>

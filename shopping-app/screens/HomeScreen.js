@@ -1,24 +1,78 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
+import { View, Text, StyleSheet } from "react-native";
 import Navbar from "../components/Navbar";
-import GlobalStyles from "../styles/GlobalStyles";
+import { ItemsContext } from "../App";
 
 export default function HomeScreen({ navigation }) {
+  const { items } = useContext(ItemsContext);
+
+  const totalItems = items.length;
+  const completedItems = items.filter((item) => item.completed).length;
+  const remainingItems = totalItems - completedItems;
+
   return (
-    <View style={GlobalStyles.container}>
-      <Text style={GlobalStyles.title}>My Shopping App</Text>
-
-      <View>
-        <Text>Amount of all items: 3</Text>
-        <Text>Deleted items: 1</Text>
-        <Text>Remain items: 2</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>My Shopping App 🛒</Text>
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Number of Total Items</Text>
+        <Text style={styles.cardValue}>{totalItems}</Text>
       </View>
-
-      <TouchableOpacity onPress={() => navigation.navigate("List")}>
-        <Text style={{ color: "#7A5BF8", marginTop: 20 }}>Go to the list</Text>
-      </TouchableOpacity>
-
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Number of Checked Items</Text>
+        <Text style={styles.cardValue}>{completedItems}</Text>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>Number of Remaining Items</Text>
+        <Text style={styles.cardValue}>{remainingItems}</Text>
+      </View>
+      <Text style={styles.link} onPress={() => navigation.navigate("List")}>
+        Go to the list
+      </Text>
       <Navbar />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#F6F4FC",
+    padding: 20,
+    paddingTop: 40,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  card: {
+    backgroundColor: "#FFF",
+    padding: 24,
+    marginBottom: 16,
+    borderRadius: 8,
+    flexDirection: "row", // Arrange items in a row
+    justifyContent: "space-between", // Space out the title and value
+    alignItems: "center", // Center items vertically
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  cardTitle: {
+    fontSize: 16,
+    color: "#000",
+  },
+  cardValue: {
+    fontSize: 16,
+    color: "#7A5BF8",
+    fontWeight: "bold",
+  },
+  link: {
+    color: "#7A5BF8",
+    textAlign: "center",
+    marginTop: 20,
+    fontSize: 16,
+  },
+});
