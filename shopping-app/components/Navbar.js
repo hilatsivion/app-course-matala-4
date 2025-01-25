@@ -32,7 +32,7 @@ export default function Navbar() {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    bottom: 20, // Elevated to avoid overlap with the screen edges
+    bottom: 20,
     left: 0,
     right: 0,
     flexDirection: "row",
@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   icon: {
-    width: 28, // Increased size for better visibility
+    width: 28,
     height: 28,
-    marginBottom: 4, // Adds spacing between the icon and the text
+    marginBottom: 4,
   },
   navText: {
     fontSize: 12,

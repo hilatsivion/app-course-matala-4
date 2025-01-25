@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
     padding: 24,
     marginBottom: 16,
     borderRadius: 8,
-    flexDirection: "row", // Arrange items in a row
-    justifyContent: "space-between", // Space out the title and value
-    alignItems: "center", // Center items vertically
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
