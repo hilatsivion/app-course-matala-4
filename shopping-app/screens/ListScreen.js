@@ -1,14 +1,22 @@
 import React, { useContext } from "react";
-import { View, FlatList, StyleSheet, Text } from "react-native";
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import AvailableItem from "../components/AvailableItem";
 import UnavailableItem from "../components/UnavailableItem";
 import Navbar from "../components/Navbar";
 import { useNavigation } from "@react-navigation/native";
-import { ItemsContext } from "../App"; // Import the context
+import { ItemsContext } from "../App";
+import Icons from "../assets/icons/Icons";
 
 export default function ListScreen() {
   const navigation = useNavigation();
-  const { items, setItems } = useContext(ItemsContext); // Access items and setItems from context
+  const { items, setItems } = useContext(ItemsContext);
 
   const toggleItemStatus = (id) => {
     setItems((prevItems) =>
@@ -49,6 +57,16 @@ export default function ListScreen() {
           )
         }
       />
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => navigation.navigate("AddItem")}
+      >
+        <View style={styles.addIcon}>
+          <Image source={Icons.Add} style={styles.icon} />
+        </View>
+        <Text style={styles.addButtonText}>add Item</Text>
+      </TouchableOpacity>
+
       <Navbar />
     </View>
   );
@@ -67,5 +85,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#000",
     marginBottom: 16,
+  },
+  addButton: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: 60,
+  },
+  addButtonText: {
+    color: "#8B74FF",
   },
 });

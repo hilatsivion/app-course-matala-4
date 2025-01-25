@@ -17,12 +17,14 @@ export default function AvailableItem({ item, onCheck, onArrowPress }) {
       <Text style={styles.itemText}>{item.name}</Text>
 
       {/* Arrow Icon */}
-      <TouchableOpacity
-        onPress={() => onArrowPress(item.id)}
-        style={styles.iconContainer}
-      >
-        <Image source={Icons.Arrow} style={styles.icon} />
-      </TouchableOpacity>
+      {item.details && ( // Only show the arrow if details exist
+        <TouchableOpacity
+          onPress={() => onArrowPress(item.id)}
+          style={styles.iconContainer}
+        >
+          <Image source={Icons.Arrow} style={styles.icon} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

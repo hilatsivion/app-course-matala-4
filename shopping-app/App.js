@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/HomeScreen";
 import ListScreen from "./screens/ListScreen";
 import DetailsScreen from "./screens/DetailsScreen";
+import AddItemScreen from "./screens/AddItemScreen";
 
 export const ItemsContext = createContext();
 
@@ -50,6 +51,7 @@ export default function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="List" component={ListScreen} />
           <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen name="AddItem" component={AddItemScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ItemsContext.Provider>
