@@ -31,23 +31,31 @@ export default function Navbar() {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    height: 60,
-    borderTopColor: "#DDD",
     position: "absolute",
-    bottom: 0,
-    width: "100%",
+    bottom: 20, // Elevated to avoid overlap with the screen edges
+    left: 0,
+    right: 0,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    backgroundColor: "#FFF",
+    borderRadius: 30,
+    marginHorizontal: 20,
+    paddingVertical: 10,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    elevation: 3,
   },
   navItem: {
     alignItems: "center",
     justifyContent: "center",
   },
   icon: {
-    width: 24,
-    height: 24,
-    marginBottom: 4,
+    width: 28, // Increased size for better visibility
+    height: 28,
+    marginBottom: 4, // Adds spacing between the icon and the text
   },
   navText: {
     fontSize: 12,

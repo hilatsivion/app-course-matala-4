@@ -38,25 +38,29 @@ export default function ListScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Shopping List</Text>
-      <FlatList
-        data={items}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) =>
-          item.completed ? (
-            <UnavailableItem
-              item={item}
-              onCheck={toggleItemStatus}
-              onDelete={deleteItem}
-            />
-          ) : (
-            <AvailableItem
-              item={item}
-              onCheck={toggleItemStatus}
-              onArrowPress={navigateToDetails}
-            />
-          )
-        }
-      />
+      {items.length === 0 ? ( // Check if the list is empty
+        <Text style={styles.noItemsText}>No items yet</Text>
+      ) : (
+        <FlatList
+          data={items}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) =>
+            item.completed ? (
+              <UnavailableItem
+                item={item}
+                onCheck={toggleItemStatus}
+                onDelete={deleteItem}
+              />
+            ) : (
+              <AvailableItem
+                item={item}
+                onCheck={toggleItemStatus}
+                onArrowPress={navigateToDetails}
+              />
+            )
+          }
+        />
+      )}
       <TouchableOpacity
         style={styles.addButton}
         onPress={() => navigation.navigate("AddItem")}
@@ -64,7 +68,7 @@ export default function ListScreen() {
         <View style={styles.addIcon}>
           <Image source={Icons.Add} style={styles.icon} />
         </View>
-        <Text style={styles.addButtonText}>add Item</Text>
+        <Text style={styles.addButtonText}>Add Item</Text>
       </TouchableOpacity>
 
       <Navbar />
@@ -81,15 +85,30 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: "bold",
-    color: "#000",
-    marginBottom: 16,
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  noItemsText: {
+    fontSize: 16,
+    color: "#999",
+    textAlign: "center",
+    marginTop: 20,
   },
   addButton: {
     display: "flex",
     alignItems: "center",
-    marginBottom: 60,
+    marginBottom: 90,
+    padding: 14,
+  },
+  addIcon: {
+    alignItems: "center",
+  },
+  icon: {
+    width: 32,
+    height: 32,
+    marginBottom: 4,
   },
   addButtonText: {
     color: "#8B74FF",
